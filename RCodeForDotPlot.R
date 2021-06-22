@@ -34,3 +34,19 @@ ggplot(mpg, aes(x = hwy,  y = reorder(manufacturer,hwy) , color = class)) +
   geom_point( ) +
   labs(x = "high way miles per gallon", y ="manufacturer",
        title = "high way miles per gallon based on manufacturer and class- type of car") 
+
+# high way miles per gallon based on manufacturer and class- type of car 
+# geom smooth for class suv
+ggplot(mpg, aes(x = hwy,  y = reorder(manufacturer,hwy) , color = class)) +
+  geom_point( ) +
+  labs(x = "", y ="high way miles per gallon",
+       title = "high way miles per gallon based on manufacturer and class- type of car") +
+  geom_smooth(data = filter(mpg, class == "suv"), se = FALSE)
+
+
+# high way miles per gallon versus engine displacement and class- type of car
+ggplot(mpg, aes(x = displ,  y = hwy , color = class)) +
+  geom_point() + 
+  labs(y = "high way miles per gallon", x ="engine displacement, in litres",
+       title = "high way miles per gallon versus engine displacement and class- type of car") +
+  geom_smooth(data = filter(mpg, class == "subcompact"), se = FALSE)
