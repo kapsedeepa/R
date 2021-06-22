@@ -1,0 +1,103 @@
+---
+title: "R bar graph"
+author: "D K"
+date: "6/22/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+
+library(tidyverse)
+
+# Read the diamonds dataset
+data(diamonds)
+
+# Summary statistics of diamonds dataset
+summary(diamonds)
+
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r diamonds, echo=FALSE}
+# Frequency of diamond cut within cut classes
+# Variables used - x-axis cut
+ggplot(diamonds, aes(x=cut)) +
+  geom_bar(color="blue", fill="blue") +
+  labs (x = "Cut classes",
+        y = "Count",
+        title = "Frequency of diamond cut within cut classes") +
+  theme(legend.position="top")
+
+```
+
+```{r diamonds, echo=FALSE}
+# Total price of diamond cut within cut classes
+# Variables used - x-axis cut, y axis price
+ggplot(diamonds, aes(x=cut, weight= price/1000)) +
+  geom_bar(color="blue", fill="blue") +
+  labs (x = "Cut classes",
+        y = "Total price/1000 of diamond cut class",
+        title = "Total price of diamond cut within cut classes") +
+  theme(legend.position="top")
+
+```
+
+```{r diamonds, echo=FALSE}
+# Total price of diamond cut within cut classes
+# Variables used - x-axis cut, y axis price, fill color cut
+ggplot(diamonds, aes(x=cut, weight= price/1000, fill = cut)) +
+  geom_bar() +
+  labs (x = "Cut classes",
+        y = "Total price/1000 of diamond cut class",
+        title = "Total price of diamond cut within cut classes") +
+  theme(legend.position="right")
+
+```
+
+```{r diamonds, echo=FALSE}
+# Stacked bar graph
+ggplot(diamonds, aes(x=cut, weight= price/1000, fill = clarity)) +
+  geom_bar() +
+  labs (x = "Cut classes",
+        y = "Total price/1000 of diamond cut class",
+        title = "Total price of diamond cut within cut classes") +
+  theme(legend.position="right")
+
+```
+
+```{r diamonds, echo=FALSE}
+# dodge bar graph
+ggplot(diamonds, aes(x=cut, weight= price/1000, fill = clarity)) +
+  geom_bar(position = "dodge") +
+  labs (x = "Cut classes",
+        y = "Total price/1000 of diamond cut class",
+        title = "Total price of diamond cut within cut classes") +
+  theme(legend.position="right")
+
+```
+
+```{r diamonds, echo=FALSE}
+# Horizontal Stacked bar graph
+ggplot(diamonds, aes(y=cut, weight= price/1000, fill = clarity)) +
+  geom_bar() +
+  labs (y = "Cut classes",
+        x = "Total price/1000 of diamond cut class",
+        title = "Total price of diamond cut within cut classes") +
+  theme(legend.position="right")
+
+```
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
